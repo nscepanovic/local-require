@@ -1,3 +1,8 @@
-module.exports = (path) => {
-  return require(process.env.NODE_ENV !== 'local' ? path : `./${path.split('/').slice(-1)[0]}`)
+const path = require('path')
+
+module.exports = (filePath) => {
+  return require(
+    process.env.NODE_ENV === 'local' ?
+      path.resolve(filePath) :
+      `./${filePath.split('/').slice(-1)[0]}`)
 }
